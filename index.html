@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title></title>
+  <script src="https://cdn.tailwindcss.com/"></script>
+  <style>
+    .gradient-background {
+      background: #E1AFD1;
+      background: linear-gradient(180deg, #FFE6E6 0%, #FDCEDF 36%, #7469B6 100%);
+    }
+
+    .bounce2 {
+      animation: bounce2 2s ease infinite;
+    }
+
+    @keyframes bounce2 {
+      0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+      }
+      40% {
+        transform: translateY(-20px);
+      }
+      60% {
+        transform: translateY(-10px);
+      }
+    }
+  </style>
+</head>
+<body class="gradient-background">
+  <div class="flex items-center justify-center h-screen">
+    <div class="flex flex-col items-center p-4">
+      <img id="imageDisplay" src="img/image1.jpg" alt="" class="rounded-md h-[300px]" style="object-fit: cover;" />
+      <h2 id="valentineQuestion" class="text-4xl font-bold italic text-[#F8E8EE] my-4">Seamos realistas chi, pidamos lo imposible! 🥰😘</h2>
+      <div class="flex gap-4 pt-[20px] items-center" id="responseButtons">
+        <button id="yesButton"
+          class="bounce2 inline-flex items-center justify-center whitespace-nowrap rounded-md text-[20px] font-medium disabled:pointer-events-none disabled:opacity-50 hover:bg-green-400 min-h-12 min-w-[75px] px-4 py-2 bg-green-500 text-white transition">
+          Chi :3
+        </button>
+        <button id="noButton"
+          class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-[20px] font-medium transition disabled:pointer-events-none disabled:opacity-50 hover:bg-red-700 h-12 min-w-[75px] w-auto px-4 py-2 bg-red-500 text-white">
+          Nou >:>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+    import confetti from 'https://cdn.skypack.dev/canvas-confetti';
+    const yesButton = document.getElementById('yesButton');
+    const noButton = document.getElementById('noButton');
+    const imageDisplay = document.getElementById('imageDisplay');
+    const valentineQuestion = document.getElementById('valentineQuestion');
+    const responseButtons = document.getElementById('responseButtons');
+  
+    let noClickCount = 0;
+    let buttonHeight = 48; 
+    let buttonWidth = 80;
+    let fontSize = 20; 
+    const imagePaths = [
+      "./img/image1.jpg",
+      "./img/image2.gif",
+      "./img/image3.jpg",
+      "./img/image4.gif",
+      "./img/image5.jpg",
+      "./img/image6.jpg",
+      "./img/image7.jpg",
+      "./img/image8.jpg",
+      "./img/image9.gif",
+      "./img/image10.jpg",
+      "./img/image11.jpg",
+      "./img/image12.jpg",
+      "./img/image13.jpg",
+      "./img/image14.gif",
+      "./img/image15.jpg",
+    ];
+  
+    noButton.addEventListener('click', function() {
+      if (noClickCount < 14) {
+        noClickCount++;
+        imageDisplay.src = imagePaths[noClickCount];
+        buttonHeight += 25;
+        buttonWidth += 25;
+        fontSize += 10;
+        yesButton.style.height = `${buttonHeight}px`;
+        yesButton.style.width = `${buttonWidth}px`;
+        yesButton.style.fontSize = `${fontSize}px`;
+        if (noClickCount < 15) {
+          valentineQuestion.textContent = ["No", "Segura? 😕", "Realmente estas segura? 👉👈", "Esperare hasta que digas que shi 🤗🤭 ", "Si no das que shi me arrojare 😭", "Me ire a llorar hasta que digas que shi... 😫🥺", "porque me sigues diciendo que nou 😓😥", "jsjsjsjs va enpecemos de nuevo te parece! 🤫🤭","Se que mi forma de querer es rara pero creeme es la mas sicera 🥰", "pero como que nou kely 😖", "aaaaa jsjssjsj vas a querer mi pinche amor o que? 🤭🥺", "vamos shi :3 Solo quiero compartir mi vida entera contigo 🤗🥰 ", "jsjsjsjs tu ma a veces te dice que quiere lo mejor para ti, se refiere a mi UwU ponte pilaaa, mi vida🤭😘","jsjsjssj vamos 🤗 ","Mira jsjsjsj podemos ser nosotros 😻 que dices? shi :3", ][noClickCount];
+        } 
+      } else {
+        const enlace = document.getElementById("enlace");
+        enlace.click();
+      }
+    });
+  
+    yesButton.addEventListener('click', () => {
+      imageDisplay.src = 'img/ayy.gif';
+      valentineQuestion.textContent = "Ayyyy! viste que si quieres 🤭🥰";
+      responseButtons.style.display = 'none';
+      confetti();
+    });
+  </script>  
+</body>
+
+</html>
